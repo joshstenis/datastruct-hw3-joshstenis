@@ -20,8 +20,19 @@ void selectionSort() {
 
 }
 
-void mergeSort() {
-
+/**
+ * Merge sorts the given vector
+ * @param v The vector to be sorted
+ * @param start The starting index
+ * @param stop The ending index
+ */
+void mergeSort(vector<int> v, int start, int stop) {
+    if(stop - start > 1) {
+        int mid = v.size() / 2;
+        mergeSort(v, start, mid);           // Recursive first half
+        mergeSort(v, mid+1, stop);          // Recursive second half
+    } else
+        if(v[start] < v[stop]) swap(v[start], v[stop]);             // List is now 2 elements long
 }
 
 /**
