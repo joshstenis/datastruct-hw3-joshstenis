@@ -28,23 +28,36 @@ void outputVector(vector<int> v) {
 }
 
 /**
+ * Merges the sub vectors back together using the selection sort method
+ * @param v The vector to be sorted
+ * @param start The starting index of the first sub vector
+ * @param mid The mid point, or end of first sub vector
+ * @param stop The end point of the second sub vector
+ * @return The full decending sorted vector
+ */
+vector<int> selectionMerge(vector<int> v, int start, int mid, int stop) {
+    // Selectively merge sub vectors back together
+}
+
+/**
  * Merge sorts the given vector
  * @param v The vector to be sorted
  * @param start The starting index
  * @param stop The ending index
+ * @return The decending sorted vector
  */
-void mergeSort(vector<int> v, int start, int stop) {
-    if(stop - start > 1) {
-        int mid = v.size() / 2;
-        mergeSort(v, start, mid);           // Recursive first half
-        mergeSort(v, mid+1, stop);          // Recursive second half
-    } else
-        if(v[start] < v[stop]) swap(v[start], v[stop]);             // List is now 2 elements long
+vector<int> mergeSort(vector<int> v, int start, int stop) {
+    int mid = v.size() / 2;
+    mergeSort(v, start, mid);           // Recursive first half
+    mergeSort(v, mid+1, stop);          // Recursive second half
+
+    return selectionMerge(v, start, mid, stop);        // Merge sub vectors back
 }
 
 /**
  * Bubble sorts a given vector into descending order
  * @param v The vector to be bubble sorted
+ * @return The decending sorted vector
  */
 vector<int> bubbleSort(vector<int> v) {
     for(int i=0; i < v.size(); i++) {
