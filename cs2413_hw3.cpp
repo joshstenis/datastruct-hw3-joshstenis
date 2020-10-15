@@ -35,8 +35,10 @@ void outputVector(vector<int> v) {
  * @param stop The end point of the second sub vector
  * @return The full decending sorted vector
  */
-vector<int> selectionMerge(vector<int> v, int start, int mid, int stop) {
-    // Selectively merge sub vectors back together
+vector<int> selectionSort(vector<int> v, int start, int stop) {
+    for(int i=0; i < v.size(); i++) {
+
+    } return v;
 }
 
 /**
@@ -48,10 +50,12 @@ vector<int> selectionMerge(vector<int> v, int start, int mid, int stop) {
  */
 vector<int> mergeSort(vector<int> v, int start, int stop) {
     int mid = v.size() / 2;
-    mergeSort(v, start, mid);           // Recursive first half
-    mergeSort(v, mid+1, stop);          // Recursive second half
 
-    return selectionMerge(v, start, mid, stop);        // Merge sub vectors back
+    vector<int> firstHalf = selectionSort(v, start, mid);               // Splits given vector in half
+    vector<int> secondHalf = selectionSort(v, mid+1, v.size());
+
+    firstHalf.insert(firstHalf.end(), secondHalf.begin(), secondHalf.end());        // Merges given vector
+    return firstHalf;
 }
 
 /**
