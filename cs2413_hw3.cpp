@@ -36,8 +36,12 @@ void outputVector(vector<int> v) {
  * @return The full decending sorted vector
  */
 vector<int> selectionSort(vector<int> v, int start, int stop) {
-    for(int i=0; i < v.size(); i++) {
+    int unsorted = v.size();
 
+    for(int i=0; i < v.size(); i++) {
+        for(int j=0; j < unsorted; j++) {
+            if(v[i] < v[j])
+        }
     } return v;
 }
 
