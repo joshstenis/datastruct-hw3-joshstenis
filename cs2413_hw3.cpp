@@ -28,9 +28,28 @@ void outputVector(vector<int> v) {
 }
 
 /**
- * Merges the sub vectors back together using the selection sort method
+ * Selections sort the entire given vector into descending order
  * @param v The vector to be sorted
- * @return The sorted vector (descending)
+ * @return The sorted vector
+ */
+vector<int> selectionSort(vector<int> v) {
+    int unsorted = v.size();
+    int biggest;
+
+    for(int i=0; i < v.size(); i++) {
+        for(int j=v.size()-unsorted; j < unsorted; j++)
+            if(v[j] > biggest) biggest = v[j];
+        v[i] = biggest;
+        unsorted--;
+    } return v;
+}
+
+/**
+ * Selection sorts a sub vector of the given vector into descending order
+ * @param v The vector to be sorted
+ * @param start The beginning  index of the sub vector
+ * @param stop The end index of the sub vector
+ * @return The sorted sub vector
  */
 vector<int> selectionSort(vector<int> v, int start, int stop) {
     int unsorted = stop;
@@ -52,7 +71,7 @@ vector<int> selectionSort(vector<int> v, int start, int stop) {
  */
 vector<int> merge(vector<int> v, vector<int> w) {
     v.insert(v.end(), w.begin(), w.end());
-    return selectionSort(v, 0, w.size());
+    return selectionSort(v);
 }
 
 /**
