@@ -53,7 +53,7 @@ vector<int> selectionSort(vector<int> v, int start, int stop) {
  */
 vector<int> merge(vector<int> v, vector<int> w) {
     v.insert(v.end(), w.begin(), w.end());
-    return selectionSort(v);
+    return selectionSort(v, 0, w.size();
 }
 
 /**
