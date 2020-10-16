@@ -38,8 +38,7 @@ vector<int> selectionSort(vector<int> v, int start, int stop) {
 
     for(int i=start; i < stop; i++) {
         for(int j=stop-unsorted; j < unsorted; j++) {
-            if(v[j] > biggest)
-                biggest = v[j];
+            if(v[j] > biggest) biggest = v[j];
         } v[i] = biggest;
         unsorted--;
     } return v;
@@ -53,7 +52,7 @@ vector<int> selectionSort(vector<int> v, int start, int stop) {
  */
 vector<int> merge(vector<int> v, vector<int> w) {
     v.insert(v.end(), w.begin(), w.end());
-    return selectionSort(v, 0, w.size();
+    return selectionSort(v, 0, w.size());
 }
 
 /**
