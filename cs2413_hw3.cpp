@@ -41,7 +41,8 @@ vector<int> selectionSort(vector<int> v) {
             if(v[j] > biggest) biggest = v[j];
         v[i] = biggest;
         unsorted--;
-    } return v;
+    } outputVector(v); cout << endl;
+    return v;
 }
 
 /**
@@ -53,14 +54,15 @@ vector<int> selectionSort(vector<int> v) {
  */
 vector<int> selectionSort(vector<int> v, int start, int stop) {
     int unsorted = stop;
-    int biggest;
+    int biggest = 0;
 
     for(int i=start; i < stop; i++) {
         for(int j=stop-unsorted; j < unsorted; j++)
             if(v[j] > biggest) biggest = v[j];
-        v[i] = biggest;
+        v[i] = v[i] ^ biggest ^ (biggest = v[i]);
         unsorted--;
-    } return v;
+    } outputVector(v); cout << endl;
+    return v;
 }
 
 /**
@@ -71,7 +73,8 @@ vector<int> selectionSort(vector<int> v, int start, int stop) {
  */
 vector<int> merge(vector<int> v, vector<int> w) {
     v.insert(v.end(), w.begin(), w.end());
-    return selectionSort(v);
+    int fullSize = v.size()+w.size();
+    return selectionSort(v, 0, fullSize);
 }
 
 /**
@@ -85,7 +88,7 @@ vector<int> mergeSort(vector<int> v) {
     int mid = v.size() / 2;
 
     vector<int> firstHalf = selectionSort(v, 0, mid);               // Splits given vector in half
-    vector<int> secondHalf = selectionSort(v, mid+1, v.size());
+    vector<int> secondHalf = selectionSort(v, mid, v.size());
 
     return merge(firstHalf, secondHalf);
 }
