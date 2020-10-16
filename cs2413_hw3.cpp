@@ -37,12 +37,16 @@ void outputVector(vector<int> v) {
  */
 vector<int> selectionSort(vector<int> v, int start, int stop) {
     int unsorted = v.size();
+    int smallest, smallIdx;
 
     for(int i=0; i < v.size(); i++) {
-        for(int j=0; j < unsorted; j++) {
-            if(v[i] < v[j])
-        }
-    } return v;
+        for(int j=v.size()-unsorted; j < unsorted; j++) {
+            if(v[j] < smallest)
+                smallest = v[j];
+        } v[i] = smallest;
+    }
+    
+    return v;
 }
 
 /**
