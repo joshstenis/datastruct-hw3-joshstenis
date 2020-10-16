@@ -99,7 +99,7 @@ vector<int> bubbleSort(vector<int> v) {
     for(int i=0; i < v.size(); i++) {
         for(int j=i+1; j < v.size(); j++) {
             if(v[i] < v[j])
-                v[i] = v[i] ^ v[j] ^ (v[j] = v[i]);             // Swaps values, instead of using 'swap' function
+                v[i] = v[i] ^ v[j] ^ (v[j] = v[i]);             // Bitwise value swap, instead of using 'swap' function
         }
     } return v;
 }
