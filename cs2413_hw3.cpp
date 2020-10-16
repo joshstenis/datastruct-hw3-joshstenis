@@ -37,9 +37,9 @@ vector<int> selectionSort(vector<int> v, int start, int stop) {
     int biggest;
 
     for(int i=start; i < stop; i++) {
-        for(int j=stop-unsorted; j < unsorted; j++) {
+        for(int j=stop-unsorted; j < unsorted; j++)
             if(v[j] > biggest) biggest = v[j];
-        } v[i] = biggest;
+        v[i] = biggest;
         unsorted--;
     } return v;
 }
