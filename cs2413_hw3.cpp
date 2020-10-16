@@ -30,23 +30,30 @@ void outputVector(vector<int> v) {
 /**
  * Merges the sub vectors back together using the selection sort method
  * @param v The vector to be sorted
- * @param start The starting index of the first sub vector
- * @param mid The mid point, or end of first sub vector
- * @param stop The end point of the second sub vector
- * @return The full decending sorted vector
+ * @return The sorted vector (descending)
  */
 vector<int> selectionSort(vector<int> v, int start, int stop) {
-    int unsorted = v.size();
-    int smallest, smallIdx;
+    int unsorted = stop;
+    int biggest;
 
-    for(int i=0; i < v.size(); i++) {
-        for(int j=v.size()-unsorted; j < unsorted; j++) {
-            if(v[j] < smallest)
-                smallest = v[j];
-        } v[i] = smallest;
-    }
-    
-    return v;
+    for(int i=start; i < stop; i++) {
+        for(int j=stop-unsorted; j < unsorted; j++) {
+            if(v[j] > biggest)
+                biggest = v[j];
+        } v[i] = biggest;
+        unsorted--;
+    } return v;
+}
+
+/**
+ * Merges two given vectors in descending element order
+ * @param v A sub vector
+ * @param w A sub vector
+ * @return The vector containing v and w
+ */
+vector<int> merge(vector<int> v, vector<int> w) {
+    v.insert(v.end(), w.begin(), w.end());
+    return selectionSort(v);
 }
 
 /**
@@ -56,14 +63,13 @@ vector<int> selectionSort(vector<int> v, int start, int stop) {
  * @param stop The ending index
  * @return The decending sorted vector
  */
-vector<int> mergeSort(vector<int> v, int start, int stop) {
+vector<int> mergeSort(vector<int> v) {
     int mid = v.size() / 2;
 
-    vector<int> firstHalf = selectionSort(v, start, mid);               // Splits given vector in half
+    vector<int> firstHalf = selectionSort(v, 0, mid);               // Splits given vector in half
     vector<int> secondHalf = selectionSort(v, mid+1, v.size());
 
-    firstHalf.insert(firstHalf.end(), secondHalf.begin(), secondHalf.end());        // Merges given vector
-    return firstHalf;
+    return merge(firstHalf, secondHalf);
 }
 
 /**
@@ -102,7 +108,7 @@ int main() {
 
         case 1:
         {
-            // Code
+            outputVector(mergeSort(input));
         } break;
     }
 }
