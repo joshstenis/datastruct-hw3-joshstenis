@@ -37,7 +37,7 @@ vector<int> selectionSort(vector<int> v) {
     int max = 0;
 
     for(int i=0; i < v.size(); i++) {
-        for(int j=v.size()-unsorted; j < unsorted; j++) {
+        for(int j=i; j < unsorted; j++) {
             if(v[j] > v[max])
                 max = j;
         }
@@ -69,9 +69,13 @@ vector<vector<int>> splitVector(vector<int> v) {
  * @return The vector containing v and w
  */
 vector<int> merge(vector<int> v, vector<int> w) {
-    v.insert(v.end(), w.begin(), w.end());
-    int fullSize = v.size()+w.size();
-    return selectionSort(v);
+    vector<int> result;
+    int size;
+    v.size() < w.size() ? size = v.size() : size = w.size();        // Find the size of the smaller vector
+
+    for(int i=0; i < size; i++) {
+        if()
+    }
 }
 
 /**
