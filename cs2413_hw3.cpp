@@ -112,6 +112,7 @@ int main() {
     cin.ignore(1, '\n');
     while(cin >> val)                   // Populates input vector
         input.push_back(val);
+    outputVector(input);
 
     switch(task) {                      // Conduct the proper sort
         case 0:
@@ -121,7 +122,6 @@ int main() {
 
         case 1:
         {
-            outputVector(input);
             outputVector(mergeSort(input));
         } break;
     }
