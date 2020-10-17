@@ -72,9 +72,17 @@ vector<vector<int>> splitVector(vector<int> v) {
 vector<int> merge(vector<int> v, vector<int> w) {
     vector<int> result;
     result.insert(result.end(), v.begin(), v.end());
-    result.insert(result.end(), w.begin(), w.end());
 
-    return selectionSort(result);
+    for(int i=0; i < w.size(); i++) {                       // Sorts both halves into full descending order
+        for(int j=0; j < result.size(); j++) {
+            if(result[j] < w[i]) {
+                result.insert(result.begin()+j, w[i]);
+                break;
+            }
+        }
+    }
+
+    return result;
 }
 
 /**
