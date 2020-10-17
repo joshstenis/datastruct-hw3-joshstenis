@@ -115,7 +115,7 @@ int main() {
         cin >> val;
         if(val == "s") break;
         input.push_back(strToInt(val));
-    }
+    } outputVector(input);
 
     switch(task) {                      // Conduct the proper sort
         case 0:
