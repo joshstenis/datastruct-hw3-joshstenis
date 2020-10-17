@@ -106,16 +106,12 @@ vector<int> bubbleSort(vector<int> v) {
 int main() {
     vector<int> input;
 
-    int task;
-    string val;
+    int task, val;
     cin >> task;
 
     cin.ignore(1, '\n');
-    while(!cin.fail()) {                // Populates input vector
-        cin >> val;
-        if(val == "s") break;
-        input.push_back(strToInt(val));
-    } outputVector(input);
+    while(cin >> val)                   // Populates input vector
+        input.push_back(val);
 
     switch(task) {                      // Conduct the proper sort
         case 0:
