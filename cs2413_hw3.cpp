@@ -121,6 +121,7 @@ int main() {
 
         case 1:
         {
+            outputVector(input);
             outputVector(mergeSort(input));
         } break;
     }
