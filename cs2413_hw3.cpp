@@ -74,7 +74,7 @@ vector<int> merge(vector<int> v, vector<int> w) {
     result.insert(result.end(), v.begin(), v.end());
     result.insert(result.end(), w.begin(), w.end());
 
-    return selectionSort(v);
+    return selectionSort(result);
 }
 
 /**
