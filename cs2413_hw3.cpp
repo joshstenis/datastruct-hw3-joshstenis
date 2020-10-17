@@ -74,15 +74,14 @@ vector<int> merge(vector<int> v, vector<int> w) {
     result.insert(result.end(), v.begin(), v.end());
 
     for(int i=0; i < w.size(); i++) {                       // Sorts both halves into full descending order
+        bool early = false;
         for(int j=0; j < result.size(); j++) {
             if(result[j] < w[i]) {
                 result.insert(result.begin()+j, w[i]);
-                break;
-            } else {
-                result.push_back(w[i]);
+                early = true;
                 break;
             }
-        }
+        } if(!early) result.push_back(w[i]);
     }
 
     return result;
