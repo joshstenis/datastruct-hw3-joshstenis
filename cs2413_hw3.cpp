@@ -45,8 +45,7 @@ vector<int> selectionSort(vector<int> v) {
 
         v[i] = v[i] ^ v[max] ^ (v[max] = v[i]);
         unsorted--;
-    } outputVector(v); cout << endl;
-    return v;
+    } return v;
 }
 
 /**
@@ -70,19 +69,8 @@ vector<vector<int>> splitVector(vector<int> v) {
  * @return The vector containing v and w
  */
 vector<int> merge(vector<int> v, vector<int> w) {
-    vector<int> result;
-    int size;
-    v.size() < w.size() ? size = v.size() : size = w.size();        // Find the size of the smaller vector
-
-    for(int i=0; i < size; i++) {
-        if(v[i] > w[i]) {
-            result.push_back(v[i]);
-            result.push_back(w[i]);
-        } else {
-            result.push_back(w[i]);
-            result.push_back(v[i]);
-        }
-    } return result;
+    v.insert(v.end(), w.begin(), w.end());
+    return selectionSort(v);
 }
 
 /**
