@@ -34,12 +34,15 @@ void outputVector(vector<int> v) {
  */
 vector<int> selectionSort(vector<int> v) {
     int unsorted = v.size();
-    int biggest = v[0];
+    int max = 0;
 
     for(int i=0; i < v.size(); i++) {
-        for(int j=v.size()-unsorted; j < unsorted; j++)
-            if(v[j] > biggest) biggest = v[j];
-        v[i] = v[i] ^ biggest ^ (biggest = v[i]);
+        for(int j=v.size()-unsorted; j < unsorted; j++) {
+            if(v[j] > v[max])
+                max = j;
+        }
+
+        v[i] = v[i] ^ v[max] ^ (v[max] = v[i]);
         unsorted--;
     } outputVector(v); cout << endl;
     return v;
