@@ -34,9 +34,10 @@ void outputVector(vector<int> v) {
  */
 vector<int> selectionSort(vector<int> v) {
     int unsorted = v.size();
-    int max = 0;
+    int max;
 
     for(int i=0; i < v.size(); i++) {
+        max = i;
         for(int j=i; j < unsorted; j++) {
             if(v[j] > v[max])
                 max = j;
@@ -74,8 +75,14 @@ vector<int> merge(vector<int> v, vector<int> w) {
     v.size() < w.size() ? size = v.size() : size = w.size();        // Find the size of the smaller vector
 
     for(int i=0; i < size; i++) {
-        if()
-    }
+        if(v[i] > w[i]) {
+            result.push_back(v[i]);
+            result.push_back(w[i]);
+        } else {
+            result.push_back(w[i]);
+            result.push_back(v[i]);
+        }
+    } return result;
 }
 
 /**
