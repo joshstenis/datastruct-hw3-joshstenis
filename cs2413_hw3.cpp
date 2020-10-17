@@ -1,5 +1,6 @@
 #include <iostream>
 #include <vector>
+#include <algorithm>
 #include <cmath>
 using namespace std;
 
@@ -69,7 +70,10 @@ vector<vector<int>> splitVector(vector<int> v) {
  * @return The vector containing v and w
  */
 vector<int> merge(vector<int> v, vector<int> w) {
-    v.insert(v.end(), w.begin(), w.end());
+    vector<int> result;
+    result.insert(result.end(), v.begin(), v.end());
+    result.insert(result.end(), w.begin(), w.end());
+
     return selectionSort(v);
 }
 
@@ -83,8 +87,8 @@ vector<int> merge(vector<int> v, vector<int> w) {
 vector<int> mergeSort(vector<int> v) {
     vector<vector<int>> halves = splitVector(v);
 
-    selectionSort(halves[0]);
-    selectionSort(halves[1]);
+    halves[0] = selectionSort(halves[0]);
+    halves[1] = selectionSort(halves[1]);
 
     return merge(halves[0], halves[1]);
 }
@@ -112,7 +116,6 @@ int main() {
     cin.ignore(1, '\n');
     while(cin >> val)                   // Populates input vector
         input.push_back(val);
-    outputVector(input);
 
     switch(task) {                      // Conduct the proper sort
         case 0:
