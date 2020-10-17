@@ -78,7 +78,7 @@ vector<int> merge(vector<int> v, vector<int> w) {
             if(result[j] < w[i]) {
                 result.insert(result.begin()+j, w[i]);
                 break;
-            }
+            } else result.push_back(w[i]);
         }
     }
 
