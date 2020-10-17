@@ -34,35 +34,29 @@ void outputVector(vector<int> v) {
  */
 vector<int> selectionSort(vector<int> v) {
     int unsorted = v.size();
-    int biggest;
+    int biggest = v[0];
 
     for(int i=0; i < v.size(); i++) {
         for(int j=v.size()-unsorted; j < unsorted; j++)
             if(v[j] > biggest) biggest = v[j];
-        v[i] = biggest;
+        v[i] = v[i] ^ biggest ^ (biggest = v[i]);
         unsorted--;
     } outputVector(v); cout << endl;
     return v;
 }
 
 /**
- * Selection sorts a sub vector of the given vector into descending order
- * @param v The vector to be sorted
- * @param start The beginning  index of the sub vector
- * @param stop The end index of the sub vector
- * @return The sorted sub vector
+ * Splits given vector into two equal sized subvectors
+ * @param v The vector to be split
+ * @return A vector of the subvectors
  */
-vector<int> selectionSort(vector<int> v, int start, int stop) {
-    int unsorted = stop;
-    int biggest = 0;
+vector<vector<int>> splitVector(vector<int> v) {
+    vector<int> firstHalf, secondHalf;
 
-    for(int i=start; i < stop; i++) {
-        for(int j=stop-unsorted; j < unsorted; j++)
-            if(v[j] > biggest) biggest = v[j];
-        v[i] = v[i] ^ biggest ^ (biggest = v[i]);
-        unsorted--;
-    } outputVector(v); cout << endl;
-    return v;
+    for(int i=0; i < v.size(); i++) {
+        if(i < v.size()/2) firstHalf.push_back(v[i]);
+        else secondHalf.push_back(v[i]);
+    } return {firstHalf, secondHalf};
 }
 
 /**
@@ -74,7 +68,7 @@ vector<int> selectionSort(vector<int> v, int start, int stop) {
 vector<int> merge(vector<int> v, vector<int> w) {
     v.insert(v.end(), w.begin(), w.end());
     int fullSize = v.size()+w.size();
-    return selectionSort(v, 0, fullSize);
+    return selectionSort(v);
 }
 
 /**
@@ -85,12 +79,12 @@ vector<int> merge(vector<int> v, vector<int> w) {
  * @return The decending sorted vector
  */
 vector<int> mergeSort(vector<int> v) {
-    int mid = v.size() / 2;
+    vector<vector<int>> halves = splitVector(v);
 
-    vector<int> firstHalf = selectionSort(v, 0, mid);               // Splits given vector in half
-    vector<int> secondHalf = selectionSort(v, mid, v.size());
+    selectionSort(halves[0]);
+    selectionSort(halves[1]);
 
-    return merge(firstHalf, secondHalf);
+    return merge(halves[0], halves[1]);
 }
 
 /**
